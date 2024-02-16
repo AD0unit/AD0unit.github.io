@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="UPscaladia48.ico">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            overflow: hidden;
+        }
+    </style>
+    <script language="JavaScript">
+    var space = " ";
+    var speed = 69;
+    var pos = 0;
+    var msg1 = "READ . . . . . . . . . . . . . . . . . . . . . . . . . ";
+    var msg2 = "DISCLAIMER . . . . . . . . . . . . . . . . . . . . . . . . ";
+    var currentMsg = msg1;
+
+    function Scroll() {
+        document.title = currentMsg.substring(currentMsg.length - pos, currentMsg.length) + space + currentMsg.substring(0, currentMsg.length - pos);
+        pos++;
+
+        if (pos > currentMsg.length) {
+            pos = 0;
+            currentMsg = (currentMsg === msg1) ? msg2 : msg1;
+        }
+
+        window.setTimeout("Scroll()", speed);
+    }
+
+    Scroll();
+</script>
+<title></title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "London Underground";
+            min-height: 100vh;
+            background: #1f1f1f;
+            background-size: 4px 4px;
+            background-position: top center;
+            background-image: radial-gradient(#362712 50%, #171717 50%);
+            background-repeat: repeat;
+            display: grid;
+            align-items: center;
+            grid-template-rows: 1fr 1fr 1fr;
+            transition: opacity 1s ease; /* Added transition for smooth fade */
+        }
+
+        .fade-out {
+            opacity: 0 !important;
+        }
+
+        p {
+            font-size: 44px;
+            color: #ff0000;
+            text-shadow: 0 0 4px #222, 0 0 16px #e65e2e, 0 0 24px #e65e2e;
+        }
+
+        .separator {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        .separator__line {
+            width: 40px;
+            height: 100px;
+            background-color: #FF0000;
+            transform: skew(-15deg);
+        }
+
+        .separator__wrapper {
+            position: relative;
+        }
+
+        .separator__filter {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            mix-blend-mode: darken;
+            background-image: radial-gradient(black 50%, white 50%);
+            background-size: 4px 4px;
+            background-repeat: repeat;
+            transform: skew(-15deg);
+            z-index: 10;
+        }
+
+        main h1 {
+            display: flex;
+            justify-content: center;
+            font-family: "London Underground";
+            font-weight: 800;
+            color: #e65e2e;
+        }
+
+        #regular {
+            font-weight: 400;
+        }
+
+        #medium {
+            font-weight: 500;
+        }
+
+        #bold {
+            font-weight: 700;
+        }
+
+        #heavy {
+            font-weight: 800;
+        }
+
+        .marquee {
+            --gap: 0.1rem;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            user-select: none;
+            gap: var(--gap);
+        }
+
+        .marquee__content {
+            display: flex;
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: space-around;
+            min-width: 100%;
+            gap: var(--gap);
+        }
+
+        .caution {
+            font-size: 52px;
+        }
+
+        #marquee__top {
+            animation: scroll 5s linear infinite;
+        }
+
+        #marquee__bottom {
+            animation: scroll-reverse 5s linear infinite;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(calc(-100% - var(--gap)));
+            }
+        }
+
+        @keyframes scroll-reverse {
+            from {
+                transform: translateX(calc(-100% + var(--gap)));
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        /* Additional styles for pause and read window */
+        .window {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.0);
+            color: #aec01a;
+            text-align: center;
+            z-index: 999;
+        }
+
+        .popup-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .unclickable-btn {
+            pointer-events: none;
+            opacity: 0.5;
+            text-decoration: none;
+            display: inline-block;
+            padding: 5px 10px;
+            margin-right: 10px;
+            background-color: #666666;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Window for pause and read -->
+    <div class="window" id="pauseReadWindow">
+        <div class="popup-text">
+            <strong>Disclaimer:<br>
+            Upscaling speeds rely on local hardware, and performance may vary across browsers. Certain browsers may experience temporary performance issues during the upscaling process. Different behaviour with different browsers is expected. I recommend reading <span style="color: #FFFFFF; text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF; font-weight: bold;">&nbsp;🗨&nbsp;</span><span style="color: #FFFFFF; text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF; font-weight: bold;">I</span>
+<span style="color: #FFFFFF; text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF; font-weight: bold;">N</span>
+<span style="color: #FFFFFF; text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF; font-weight: bold;">F</span>
+<span style="color: #FFFFFF; text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF; font-weight: bold;">O</span>
+<span style="color: #FFFFFF; text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF; font-weight: bold;">.</span> @ next page
+<br><br><br><br><br>
+            Are you sure you read this? <span style="color: transparent;"><a href="https://youtu.be/KpBnc9acOZg?si=oXOSUwwa-YIhH60k" style="visibility:hidden;">You Found the OG No1 Lenny ¯\_(ツ)_/¯ </a></span>Ⓠ Unclickable button ? <br>
+            <br>
+            In order to Actually <span style="color: #FFFFFF; text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF; font-weight: bold;">R</span>
+<span style="color: #FFFFFF; text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF; font-weight: bold;">E</span>
+<span style="color: #FFFFFF; text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF; font-weight: bold;">A</span>
+<span style="color: #FFFFFF; text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF; font-weight: bold;">D</span>
+<span style="color: transparent;"> Yo you found the forbidden Invisible Text ! </span>Ⓐ Image is pre-loading be patient.<br>
+            I advice Pressing the <span style="color: #FFFFFF; text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF; font-weight: bold;">P</span>
+<span style="color: #FFFFFF; text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF; font-weight: bold;">A</span>
+<span style="color: #FFFFFF; text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF; font-weight: bold;">U</span>
+<span style="color: #FFFFFF; text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF; font-weight: bold;">S</span>
+<span style="color: #FFFFFF; text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF; font-weight: bold;">E</span>
+ button<span style="color: transparent;"> <a href="https://youtu.be/xvFZjo5PgG0?si=6dy8bf2zUm86Fhf-" style="visibility:hidden;">  yOu FoUnD mE !  (ง'̀-'́) 7 ! </a></span>Ⓑ Image is pretendo GO & rel↻ad.</strong>
+        </div>
+        <button id="pauseBtn" onclick="togglePause()">Pause</button>
+        <button id="readBtn" onclick="read()">Read</button>
+    </div>
+    <!-- End of Window -->
+
+    <div class="marquee">
+        <div class="marquee__content" id="marquee__top">
+            <div class="separator">
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+            </div>
+            <p id="heavy">WORK IN PROGRESS</p>
+            <div class="separator">
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+            </div>
+            <p id="medium" class="caution">CAUTION</p>
+        </div>
+        <div class="marquee__content" aria-hidden="true" id="marquee__top">
+            <div class="separator">
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+            </div>
+            <p id="heavy">WORK IN PROGRESS</p>
+            <div class="separator">
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+            </div>
+            <p id="medium" class="caution">CAUTION</p>
+        </div>
+    </div>
+    <main style="text-align: right; padding-right: 0px;">
+        <center>
+            <!-- Countdown above the window -->
+                <style>
+        @keyframes burn {
+            0% {
+                text-shadow: 0 0 20px #e65e2e, 0 0 40px #e65e2e, 0 0 60px #e65e2e;
+                opacity: 0.8;
+            }
+            25% {
+                text-shadow: 0 0 30px #e65e2e, 0 0 50px #e65e2e, 0 0 70px #e65e2e;
+                opacity: 0.7;
+            }
+            50% {
+                text-shadow: 0 0 20px #e65e2e, 0 0 60px #e65e2e, 0 0 80px #e65e2e;
+                opacity: 0.6;
+            }
+            75% {
+                text-shadow: 0 0 30px #e65e2e, 0 0 50px #e65e2e, 0 0 70px #e65e2e;
+                opacity: 0.7;
+            }
+            100% {
+                text-shadow: 0 0 20px #e65e2e, 0 0 40px #e65e2e, 0 0 60px #e65e2e;
+                opacity: 0.8;
+            }
+        }
+
+        main {
+            text-align: right;
+            padding-right: 0px;
+        }
+
+        #countdown {
+            display: inline-block;
+            font-size: 72px; /* Adjusted font size */
+            color: #fff;
+            animation: burn 1.5s infinite;
+            cursor: pointer;
+        }
+
+        .fade-out {
+            opacity: 0 !important;
+            transition: opacity 1s ease; /* Smooth fade-out transition */
+        }
+    </style>
+
+
+
+    <main>
+        <center>
+            <!-- Countdown above the window -->
+            <h1 id="countdown" onclick="togglePause()">0:07.000</h1>
+        </center>
+    </main>
+
+    <script>
+        var countdownElement = document.getElementById('countdown');
+        var time = 7000; // 7 seconds in milliseconds
+        var countdownInterval;
+        var isPaused = false;
+
+        function updateCountdown() {
+            if (!isPaused && time >= 0) {
+                var seconds = Math.floor(time / 1000);
+                var milliseconds = time % 1000;
+
+                // Display the countdown in the format ss.SSS
+                countdownElement.textContent = `${seconds < 10 ? '0' : ''}${seconds}:${milliseconds < 100 ? '0' : ''}${milliseconds}`;
+
+                time -= 10; // Update every 10 milliseconds
+
+                if (time < 0) {
+                    clearInterval(countdownInterval);
+                    redirect();
+                }
+            }
+        }
+
+        countdownElement.addEventListener('click', togglePause);
+
+        function togglePause() {
+            isPaused = !isPaused;
+
+            if (!isPaused && time >= 0) {
+                countdownInterval = setInterval(updateCountdown, 10);
+            }
+        }
+
+        function redirect() {
+            document.body.classList.add('fade-out');
+            setTimeout(function () {
+                window.location.href = 'https://upscaladia.000webhostapp.com/upscalad/index.html';
+            }, 1000); // Delay for 1 second to allow the fade-out transition
+        }
+
+        // Start the countdown
+        countdownInterval = setInterval(updateCountdown, 10);
+    </script>
+    <br><br><br><br>
+    <div class="marquee">
+        <div class="marquee__content" id="marquee__bottom">
+            <div class="separator">
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+            </div>
+            <p id="heavy">WORK IN PROGRESS</p>
+            <div class="separator">
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+            </div>
+            <p id="medium" class="caution">CAUTION</p>
+        </div>
+        <div class="marquee__content" aria-hidden="true" id="marquee__bottom">
+            <div class="separator">
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+            </div>
+            <p id="heavy">WORK IN PROGRESS</p>
+            <div class="separator">
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+                <div class="separator__wrapper">
+                    <div class="separator__filter"></div>
+                    <div class="separator__line"></div>
+                </div>
+            </div>
+            <p id="medium" class="caution">CAUTION</p>
+        </div>
+    </div>
+
+    <script>
+        var countdownElement = document.getElementById('countdown');
+        var seconds = 7;
+        var countdownInterval;
+        var isPaused = false;
+
+        function countdown() {
+            if (!isPaused) {
+                countdownElement.textContent = seconds;
+                seconds--;
+
+                if (seconds < 0) {
+                    document.body.classList.add('fade-out');
+                    setTimeout(function () {
+                        window.location.href = 'https://upscaladia.000webhostapp.com/upscalad/index.html';
+                    }, 1000); // Delay for 1 second to allow the fade-out transition
+                } else {
+                    countdownInterval = setTimeout(countdown, 1000);
+                }
+            } else {
+                setTimeout(countdown, 1000);
+            }
+        }
+
+        countdown();
+
+        function togglePause() {
+            isPaused = !isPaused;
+            var pauseBtn = document.getElementById('pauseBtn');
+            pauseBtn.textContent = isPaused ? 'Unpause' : 'Pause';
+        }
+
+        function read() {
+            document.body.classList.add('fade-out');
+            setTimeout(function () {
+                window.location.href = 'https://upscaladia.000webhostapp.com/upscalad/index.html';
+            }, 1000); // Delay for 1 seconds for a smoother fade-out transition
+        }
+    </script>
+<style>
+    #pauseBtn, #readBtn {
+        background-color: #a1b310;
+        color: #fff;
+        border: 1px solid #ff8400;
+        border-radius: 8px;
+        padding: 10px 20px;
+        margin-right: 10px; /* Add margin between buttons */
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    #pauseBtn:hover, #readBtn:hover {
+        background: -webkit-linear-gradient(top, #ff6600, #ff8400);
+        background: linear-gradient(to bottom, #ff6600, #ff8400);
+        border-color: #ff8400;
+    }
+</style>
+</body>
+
+</html>
